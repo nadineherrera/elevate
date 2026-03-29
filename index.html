@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Nadine Planner</title>
+
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1f2430;
+      --text: #f5f7fb;
+      --muted: #a8b0c0;
+      --accent: #d4af37;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #0d1016 0%, #121722 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav button {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+    }
+
+    .nav button:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .nav button.active {
+      background: var(--accent);
+      color: #111;
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 850px;
+    }
+
+    .content-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .view-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .view-header h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .view-header a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+
+    .view-header a:hover {
+      text-decoration: underline;
+    }
+
+    .tab-panel {
+      display: none;
+      height: calc(100vh - 270px);
+      min-height: 650px;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .app-shell {
+        padding: 14px;
+      }
+
+      .hero {
+        padding: 18px;
+      }
+
+      .tab-panel {
+        height: calc(100vh - 310px);
+        min-height: 560px;
+      }
+
+      .nav {
+        width: 100%;
+      }
+
+      .nav button {
+        flex: 1 1 calc(50% - 10px);
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <h1>Nadine Planner</h1>
+        <p>Your tasks, daily routine, and weekly schedule in one place.</p>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <button class="tab-btn active" data-tab="tasks">All Tasks</button>
+        <button class="tab-btn" data-tab="daily">Daily App</button>
+        <button class="tab-btn" data-tab="schedule">Schedule</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>One app. Three views.</h2>
+      <p>
+        This starter version combines your existing task pages into one clean shell.
+        Later, you can fully merge the code into one Firebase-powered app so everything
+        syncs together under one design and one login.
+      </p>
+    </section>
+
+    <main class="content-card">
+      <div class="view-header">
+        <h3 id="viewTitle">All Tasks</h3>
+        <a id="openLink" href="https://nadineherrera.github.io/tasklist/" target="_blank" rel="noopener noreferrer">
+          Open page directly
+        </a>
+      </div>
+
+      <section id="tasks" class="tab-panel active" aria-label="All Tasks view">
+        <iframe
+          src="https://nadineherrera.github.io/tasklist/"
+          title="All Tasks"
+          loading="lazy">
+        </iframe>
+      </section>
+
+      <section id="daily" class="tab-panel" aria-label="Daily App view">
+        <iframe
+          src="https://nadineherrera.github.io/dailytaskapp/"
+          title="Daily Task App"
+          loading="lazy">
+        </iframe>
+      </section>
+
+      <section id="schedule" class="tab-panel" aria-label="Schedule view">
+        <iframe
+          src="https://nadineherrera.github.io/schedule/"
+          title="Weekly Schedule"
+          loading="lazy">
+        </iframe>
+      </section>
+    </main>
+
+    <p class="footer-note">
+      This is the fastest working version. It makes your 3 current GitHub Pages projects feel
+      like one website immediately. After that, the next step is to move all the actual task,
+      journal, hydration, and schedule code into one shared codebase.
+    </p>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".tab-panel");
+    const viewTitle = document.getElementById("viewTitle");
+    const openLink = document.getElementById("openLink");
+
+    const tabMeta = {
+      tasks: {
+        title: "All Tasks",
+        url: "https://nadineherrera.github.io/tasklist/"
+      },
+      daily: {
+        title: "Daily App",
+        url: "https://nadineherrera.github.io/dailytaskapp/"
+      },
+      schedule: {
+        title: "Schedule",
+        url: "https://nadineherrera.github.io/schedule/"
+      }
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.tab;
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        panels.forEach((panel) => panel.classList.remove("active"));
+
+        button.classList.add("active");
+        document.getElementById(target).classList.add("active");
+
+        viewTitle.textContent = tabMeta[target].title;
+        openLink.href = tabMeta[target].url;
+      });
+    });
+  </script>
+</body>
+</html>
