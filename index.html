@@ -2,22 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-  <title>Nadine Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elevate</title>
 
   <style>
     :root {
-      --bg: #0f1115;
-      --panel: #171a21;
-      --panel-2: #1f2430;
-      --text: #f5f7fb;
-      --muted: #a8b0c0;
-      --accent: #d4af37;
-      --border: rgba(255, 255, 255, 0.08);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      --bg: #f7f7f5;
+      --panel: #ffffff;
+      --panel-2: #fafafa;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #c6a95a;
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       --radius: 18px;
     }
 
@@ -28,119 +25,100 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(180deg, #0d1016 0%, #121722 100%);
+      background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      min-height: 100%;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
     }
 
     .app-shell {
-      width: 100%;
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 24px;
     }
 
     .topbar {
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .brand h1 {
       margin: 0;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-size: 1.6rem;
+      font-weight: 600;
     }
 
     .brand p {
       margin: 0;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .nav {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .nav button {
       border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.04);
+      background: white;
       color: var(--text);
-      padding: 12px 18px;
+      padding: 10px 16px;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 0.95rem;
       transition: 0.2s ease;
     }
 
     .nav button:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateY(-1px);
+      background: #f1f1f1;
     }
 
     .nav button.active {
       background: var(--accent);
-      color: #111;
-      border-color: transparent;
+      color: white;
+      border: none;
       font-weight: 600;
     }
 
     .hero {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border: 1px solid var(--border);
+      background: var(--panel);
       border-radius: var(--radius);
       padding: 24px;
+      margin-bottom: 20px;
       box-shadow: var(--shadow);
-      margin-bottom: 18px;
+      border: 1px solid var(--border);
     }
 
     .hero h2 {
-      margin: 0 0 10px 0;
-      font-size: 1.4rem;
-      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-size: 1.3rem;
     }
 
     .hero p {
       margin: 0;
       color: var(--muted);
       line-height: 1.6;
-      max-width: 850px;
     }
 
     .content-card {
       background: var(--panel);
-      border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
     }
 
     .view-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
       padding: 14px 18px;
-      background: var(--panel-2);
       border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--panel-2);
     }
 
     .view-header h3 {
@@ -151,7 +129,7 @@
     .view-header a {
       color: var(--accent);
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     .view-header a:hover {
@@ -160,8 +138,8 @@
 
     .tab-panel {
       display: none;
-      height: calc(100vh - 270px);
-      min-height: 650px;
+      height: calc(100vh - 260px);
+      min-height: 600px;
     }
 
     .tab-panel.active {
@@ -171,119 +149,103 @@
     iframe {
       width: 100%;
       height: 100%;
-      border: 0;
-      background: #fff;
+      border: none;
+      background: white;
     }
 
     .footer-note {
-      margin-top: 16px;
+      margin-top: 14px;
       color: var(--muted);
       font-size: 0.9rem;
-      line-height: 1.5;
     }
 
     @media (max-width: 768px) {
-      .app-shell {
-        padding: 14px;
-      }
-
-      .hero {
-        padding: 18px;
+      .nav button {
+        flex: 1;
+        text-align: center;
       }
 
       .tab-panel {
-        height: calc(100vh - 310px);
-        min-height: 560px;
-      }
-
-      .nav {
-        width: 100%;
-      }
-
-      .nav button {
-        flex: 1 1 calc(50% - 10px);
-        text-align: center;
+        height: calc(100vh - 300px);
       }
     }
   </style>
 </head>
+
 <body>
   <div class="app-shell">
+
+    <!-- HEADER -->
     <header class="topbar">
       <div class="brand">
-        <h1>Nadine Planner</h1>
-        <p>Your tasks, daily routine, and weekly schedule in one place.</p>
+        <h1>Elevate</h1>
+        <p>Your daily system for clarity and consistency</p>
       </div>
 
-      <nav class="nav" aria-label="Main navigation">
-        <button class="tab-btn active" data-tab="tasks">All Tasks</button>
-        <button class="tab-btn" data-tab="daily">Daily App</button>
+      <nav class="nav">
+        <button class="tab-btn active" data-tab="tasks">Tasks</button>
+        <button class="tab-btn" data-tab="daily">Daily</button>
         <button class="tab-btn" data-tab="schedule">Schedule</button>
       </nav>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
-      <h2>One app. Three views.</h2>
+      <h2>One system. One place.</h2>
       <p>
-        This starter version combines your existing task pages into one clean shell.
-        Later, you can fully merge the code into one Firebase-powered app so everything
-        syncs together under one design and one login.
+        Elevate brings your tasks, routines, and schedule together into a single
+        structured experience — so you can move through your day with clarity.
       </p>
     </section>
 
+    <!-- CONTENT -->
     <main class="content-card">
+
       <div class="view-header">
-        <h3 id="viewTitle">All Tasks</h3>
-        <a id="openLink" href="https://nadineherrera.github.io/tasklist/" target="_blank" rel="noopener noreferrer">
-          Open page directly
+        <h3 id="viewTitle">Tasks</h3>
+        <a id="openLink" href="https://nadineherrera.github.io/tasklist/" target="_blank">
+          Open page
         </a>
       </div>
 
-      <section id="tasks" class="tab-panel active" aria-label="All Tasks view">
-        <iframe
-          src="https://nadineherrera.github.io/tasklist/"
-          title="All Tasks"
-          loading="lazy">
-        </iframe>
+      <!-- TASKS -->
+      <section id="tasks" class="tab-panel active">
+        <iframe src="https://nadineherrera.github.io/tasklist/"></iframe>
       </section>
 
-      <section id="daily" class="tab-panel" aria-label="Daily App view">
-        <iframe
-          src="https://nadineherrera.github.io/dailytaskapp/"
-          title="Daily Task App"
-          loading="lazy">
-        </iframe>
+      <!-- DAILY -->
+      <section id="daily" class="tab-panel">
+        <iframe src="https://nadineherrera.github.io/dailytaskapp/"></iframe>
       </section>
 
-      <section id="schedule" class="tab-panel" aria-label="Schedule view">
-        <iframe
-          src="https://nadineherrera.github.io/schedule/"
-          title="Weekly Schedule"
-          loading="lazy">
-        </iframe>
+      <!-- SCHEDULE -->
+      <section id="schedule" class="tab-panel">
+        <iframe src="https://nadineherrera.github.io/schedule/"></iframe>
       </section>
+
     </main>
 
     <p class="footer-note">
-      This is the fastest working version. It makes your 3 current GitHub Pages projects feel
-      like one website immediately. After that, the next step is to move all the actual task,
-      journal, hydration, and schedule code into one shared codebase.
+      Elevate is your daily operating system — bringing structure, consistency,
+      and clarity into one place.
     </p>
+
   </div>
 
+  <!-- SCRIPT -->
   <script>
     const buttons = document.querySelectorAll(".tab-btn");
     const panels = document.querySelectorAll(".tab-panel");
-    const viewTitle = document.getElementById("viewTitle");
-    const openLink = document.getElementById("openLink");
+    const title = document.getElementById("viewTitle");
+    const link = document.getElementById("openLink");
 
-    const tabMeta = {
+    const tabs = {
       tasks: {
-        title: "All Tasks",
+        title: "Tasks",
         url: "https://nadineherrera.github.io/tasklist/"
       },
       daily: {
-        title: "Daily App",
+        title: "Daily",
         url: "https://nadineherrera.github.io/dailytaskapp/"
       },
       schedule: {
@@ -292,20 +254,21 @@
       }
     };
 
-    buttons.forEach((button) => {
+    buttons.forEach(button => {
       button.addEventListener("click", () => {
-        const target = button.dataset.tab;
+        const tab = button.dataset.tab;
 
-        buttons.forEach((btn) => btn.classList.remove("active"));
-        panels.forEach((panel) => panel.classList.remove("active"));
+        buttons.forEach(b => b.classList.remove("active"));
+        panels.forEach(p => p.classList.remove("active"));
 
         button.classList.add("active");
-        document.getElementById(target).classList.add("active");
+        document.getElementById(tab).classList.add("active");
 
-        viewTitle.textContent = tabMeta[target].title;
-        openLink.href = tabMeta[target].url;
+        title.textContent = tabs[tab].title;
+        link.href = tabs[tab].url;
       });
     });
   </script>
+
 </body>
 </html>
